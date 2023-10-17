@@ -5,6 +5,8 @@ import openai
 # Streamlit Community Cloudの「Secrets」からOpenAI API keyを取得
 openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
+gpt_model = "gpt-3.5-turbo"
+
 # st.session_stateを使いメッセージのやりとりを保存
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
@@ -19,7 +21,7 @@ def communicate():
     messages.append(user_message)
 
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model=gpt_model,
         messages=messages
     )
 
@@ -31,7 +33,7 @@ def communicate():
 
 # ユーザーインターフェイスの構築
 st.title("ChatGPT カスタマイズサンプル")
-st.write(response.model + " を使ったチャットボットです。")
+st.write(gpt_model + " を使ったチャットボットです。")
 st.write("今回の役割設定は " + st.secrets.AppSettings.chatbot_setting + " です。")
 
 user_input = st.text_input("メッセージを入力してください。", key="user_input", on_change=communicate)
