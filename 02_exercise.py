@@ -34,7 +34,7 @@ def communicate():
 # ユーザーインターフェイスの構築
 st.title("ChatGPT カスタマイズサンプル")
 st.write(gpt_model + " を使ったチャットボットです。")
-st.write("今回の役割設定は " + st.secrets.AppSettings.chatbot_setting + " です。")
+st.write("今回の役割設定は 「" + st.secrets.AppSettings.chatbot_setting + "」 です。")
 
 user_input = st.text_input("メッセージを入力してください。", key="user_input", on_change=communicate)
 
